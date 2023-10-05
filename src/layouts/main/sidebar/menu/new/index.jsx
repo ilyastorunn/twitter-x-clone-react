@@ -1,4 +1,4 @@
-import Button from "../../../../../components/buttons/index";
+import Button from "../../../../../components/button/index";
 
 export default function New() {
     return (

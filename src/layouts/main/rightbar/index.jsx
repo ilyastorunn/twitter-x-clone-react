@@ -1,7 +1,13 @@
+import Premium from "~/layouts/main/rightbar/premium";
+import Search from "./search";
+import Topics from "~/layouts/main/rightbar/Topics";
+
 export default function RightBar() {
     return (
         <aside className="w-[350px] mr-2.5">
-            sağ sidebar!
+            <Search />
+            <Premium />
+            <Topics />
         </aside>
     )
 }

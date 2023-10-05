@@ -202,3 +202,74 @@ export const mainMenu = [
         }
     }
 ]
+
+export const topics = [
+    {
+        title: 'Trending in Turkey',
+        topic: {
+            type: 'query',
+            value: 'Galatasaray'
+        }
+    },
+    {
+        title: 'Trending',
+        topic: {
+            type: 'query',
+            value: 'Elon Musk'
+        },
+        postCount: 73000
+    },
+    {
+        title: 'Trending in Turkey',
+        topic: {
+            type: 'query',
+            value: 'Ala Tokel'
+        },
+        postCount: 4407
+    },
+    {
+        title: 'Sports',
+        topic: {
+            type: 'query',
+            value: 'Messi'
+        },
+        postCount: 46100
+    },
+    {
+        title: 'Sports',
+        topic: {
+            type: 'query',
+            value: 'QatarGP'
+        },
+        postCount: 9108
+    },
+    {
+        title: 'Trending',
+        topic: {
+            type: 'query',
+            value: 'Mercedes'
+        }
+    },
+    {
+        title: 'Trending',
+        topic: {
+            type: 'query',
+            value: 'For All The Dogs'
+        }
+    },
+    {
+        title: 'Trending',
+        topic: {
+            type: 'query',
+            value: 'Climate Change'
+        }
+    },
+    {
+        title: 'Sports',
+        topic: {
+            type: 'query',
+            value: 'Carlos Alcaraz'
+        },
+        postCount: 6300
+    },
+]
