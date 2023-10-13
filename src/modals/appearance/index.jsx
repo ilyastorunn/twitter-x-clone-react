@@ -3,6 +3,7 @@ import Button from "~/components/button";
 import { useAppearance } from "~/store/appearance/hooks";
 import classNames from "classnames";
 import { setBackgroundColor, setBoxShadow, setColor, setFontSize } from "~/store/appearance/action";
+import { colors } from "~/utils/consts";
 
 export default function AppearanceModal({ close }) {
 
@@ -47,30 +48,84 @@ export default function AppearanceModal({ close }) {
                     </div>
                 </div>
                 <div>
-                    <h6 className="text-[color:var(--color-base-secondary)] mb-1 leading-5 text-[13px] font-bold">Background</h6>
-                    <div className="py-1 px-3 mb-3 grid gap-1 grid-cols-3 bg-[color:var(--background-secondary)] rounded-2xl">
-                        <button
-                            onClick={() => {
-                                setColor({
-                                    ...color,
-                                    base: '#0f1419',
-                                    baseSecondary: '#536471'
-                                })
-                                setBackgroundColor({
-                                    name: 'light',
-                                    primary: '#fff',
-                                    secondary: '#f7f9f9',
-                                    third: '#eff3f4',
-                                    modal: '#00000066'
-                                })
-                                setBoxShadow({
-                                    boxShadow: 'rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px'
-                                })
-                            }}
-                            className={classNames("h-16 px-5 bg-white text-[#0f1419] border font-bold border-white/10 rounded", {
-                                "!border-[color:var(--color-primary)]": backgroundColor.name === 'light'
-                            })}
-                        >
+
+                <div className="grid gap-3">
+                    <section>
+                        <h6 className="text-[color:var(--color-base-secondary)] mb-1 leading-5 text-[13px] font-bold">Font size</h6>
+                        <div className="bg-[color:var(--background-secondary)] p-4 mb-3 rounded-2xl flex items-center gap-5">
+                            <div className="text-[13px]">Aa</div>
+                            <div className="h-1 bg-[color:var(--color-secondary)] flex-1 rounded-full"></div>
+                            <div className="text-[20px]">Aa</div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h6 className="text-[color:var(--color-base-secondary)] mb-1 leading-5 text-[13px] font-bold">Color</h6>
+                        <div className="bg-[color:var(--background-secondary)] py-2 mb-3 rounded-2xl flex justify-around items-center">
+                            {colors.map((c, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => {
+                                        setColor({
+                                            ...color,
+                                            ...c
+                                        })
+                                    }}
+                                    style={{'--bg': c.primary}}
+                                    className="w-10 h-10 rounded-full bg-[color:var(--bg)] flex items-center justify-center text-white"
+                                >
+                                    {color.primary === c.primary && (
+                                        <svg viewBox="0 0 24 24" width={25}>
+                                            <path
+                                                fill="currentColor"
+                                                d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+                                            />
+                                        </svg>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section>
+                        <h6 className="text-[color:var(--color-base-secondary)] mb-1 leading-5 text-[13px] font-bold">Background</h6>
+                        <div className="py-2 px-4 mb-3 grid gap-2 grid-cols-3 bg-[color:var(--background-secondary)] rounded-2xl">
+                            <button
+                                onClick={() => {
+                                    setColor({
+                                        ...color,
+                                        base: '#0f1419',
+                                        baseSecondary: '#536471'
+                                    })
+                                    setBackgroundColor({
+                                        name: 'light',
+                                        primary: '#fff',
+                                        secondary: '#f7f9f9',
+                                        third: '#eff3f4',
+                                        modal: '#00000066'
+                                    })
+                                    setBoxShadow({
+                                        boxShadow: 'rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px'
+                                    })
+                                }}
+                                className={classNames("h-16 pr-3 pl-2 bg-white text-[#0f1419] border font-bold border-white/10 rounded group flex items-center gap-1.5", {
+                                    "!border-[color:var(--color-primary)] !border-2": backgroundColor.name === 'light'
+                                })}
+                            >
+                            <div className="w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-black/5 flex items-center justify-center">
+                                <div className={classNames("w-5 h-5 rounded-full border-2 border-[#b9cad3] flex items-center justify-center", {
+                                    "!border-[color:var(--color-primary)] !bg-[color:var(--color-primary)] text-white": backgroundColor.name === 'light'
+                                })}>
+                                {backgroundColor.name === 'light' && (
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            fill="currentColor"
+                                            d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+                                        />
+                                    </svg>
+                                )}
+                                </div>
+                            </div>
                             Default
                         </button>
                         <button
@@ -91,10 +146,24 @@ export default function AppearanceModal({ close }) {
                                     boxShadow: 'rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px'
                                 })
                             }}
-                            className={classNames("h-16 px-5 bg-[#15202b] text-[#f7f9f9] border font-bold border-white/10 rounded", {
-                                "!border-[color:var(--color-primary)]": backgroundColor.name === 'dim'
+                            className={classNames("h-16 pr-3 pl-2 bg-[#15202b] text-[#f7f9f9] border font-bold border-white/10 rounded group flex items-center gap-1.5", {
+                                "!border-[color:var(--color-primary)] !border-2": backgroundColor.name === 'dim'
                             })}
                         >
+                            <div className="w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-white/5 flex items-center justify-center">
+                                <div className={classNames("w-5 h-5 rounded-full border-2 border-[#5c6e7e] flex items-center justify-center", {
+                                    "!border-[color:var(--color-primary)] !bg-[color:var(--color-primary)] text-white": backgroundColor.name === 'dim'
+                                })}>
+                                {backgroundColor.name === 'dim' && (
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            fill="currentColor"
+                                            d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+                                        />
+                                    </svg>
+                                )}
+                                </div>
+                            </div>
                             Dim
                         </button>
                         <button
@@ -115,17 +184,33 @@ export default function AppearanceModal({ close }) {
                                     boxShadow: 'rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px'
                                 })
                             }}
-                            className={classNames("h-16 px-5 bg-black text-[#f7f9f9] border font-bold border-white/10 rounded", {
-                                "!border-[color:var(--color-primary)]": backgroundColor.name === 'dark'
+                            className={classNames("h-16 pr-3 pl-2 bg-black text-[#f7f9f9] border font-bold border-white/10 rounded group flex items-center gap-1.5", {
+                                "!border-[color:var(--color-primary)] !border-2": backgroundColor.name === 'dark'
                             })}
                         >
+                            <div className="w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-white/5 flex items-center justify-center">
+                                <div className={classNames("w-5 h-5 rounded-full border-2 border-[#3e4144] flex items-center justify-center", {
+                                    "!border-[color:var(--color-primary)] !bg-[color:var(--color-primary)] text-white": backgroundColor.name === 'dark'
+                                })}>
+                                {backgroundColor.name === 'dark' && (
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            fill="currentColor"
+                                            d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+                                        />
+                                    </svg>
+                                )}
+                                </div>
+                            </div>
                             Lights Out
                         </button>
                     </div>
+                    </section>
+                </div>            
 
-                    <div className="flex items-center justify-center">
-                        <Button onClick={close}>Done</Button>
-                    </div>
+                <div className="flex items-center justify-center">
+                    <Button onClick={close}>Done</Button>
+                </div>
 
                 </div>
             </div>
